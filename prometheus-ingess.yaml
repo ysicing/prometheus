@@ -1,0 +1,32 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: prom
+  namespace: monitoring
+spec:
+  # tls:
+  # - hosts:
+  #   - prom.k7s.xyz
+  # - hosts:
+  #   - grafana.k7s.xyz
+  # - hosts:
+  #   - alter.k7s.xyz
+  rules:
+  - host: prom.k7s.xyz
+    http:
+      paths:
+      - backend:
+          serviceName: prometheus-k8s
+          servicePort: 9090
+  - host: grafana.k7s.xyz
+    http:
+      paths:
+      - backend:
+          serviceName: grafana
+          servicePort: 3000
+  - host: alter.k7s.xyz
+    http:
+      paths:
+      - backend:
+          serviceName: alertmanager-main
+          servicePort: 9093
