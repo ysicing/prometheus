@@ -10,7 +10,9 @@ spec:
   - name: web
     port: 9090
     targetPort: web
+  type: NodePort
   selector:
     app: prometheus
     prometheus: k8s
   sessionAffinity: ClientIP
+---
