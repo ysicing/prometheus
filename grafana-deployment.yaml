@@ -9,7 +9,7 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: grafana    
+      app: grafana
   template:
     metadata:
       labels:
@@ -121,9 +121,8 @@ spec:
         runAsUser: 65534
       serviceAccountName: grafana
       volumes:
-      - name: grafana-storage
-        persistentVolumeClaim:
-            claimName: grafana-data-db-pvc
+      - emptyDir: {}
+        name: grafana-storage
       - name: grafana-datasources
         secret:
           secretName: grafana-datasources
