@@ -37,6 +37,7 @@ EOF
 kubectl create secret generic additional-configs --from-file=/tmp/prometheus-additional.yaml -n monitoring
 
 kubectl apply -f rules
+kubectl apply -f prometheus-adapter
 kubectl apply -f node-exporter
 kubectl apply -f kube-state-metrics
 kubectl apply -f alertmanager
