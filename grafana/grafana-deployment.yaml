@@ -9,14 +9,15 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: grafana    
+      app: grafana
   template:
     metadata:
       labels:
         app: grafana
     spec:
       containers:
-      - image: grafana/grafana:6.6.0
+      - env: []
+        image: grafana/grafana:6.6.0
         name: grafana
         ports:
         - containerPort: 3000
@@ -92,9 +93,6 @@ spec:
           readOnly: false
         - mountPath: /grafana-dashboard-definitions/0/pod-total
           name: grafana-dashboard-pod-total
-          readOnly: false
-        - mountPath: /grafana-dashboard-definitions/0/pods
-          name: grafana-dashboard-pods
           readOnly: false
         - mountPath: /grafana-dashboard-definitions/0/prometheus-remote-write
           name: grafana-dashboard-prometheus-remote-write
@@ -181,9 +179,6 @@ spec:
       - configMap:
           name: grafana-dashboard-pod-total
         name: grafana-dashboard-pod-total
-      - configMap:
-          name: grafana-dashboard-pods
-        name: grafana-dashboard-pods
       - configMap:
           name: grafana-dashboard-prometheus-remote-write
         name: grafana-dashboard-prometheus-remote-write
