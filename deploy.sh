@@ -1,5 +1,6 @@
 #!/bin/bash 
 
+kubectl apply -f setup
 kubectl -n monitoring create secret generic etcd-certs --from-file=/etc/kubernetes/pki/etcd/healthcheck-client.crt --from-file=/etc/kubernetes/pki/etcd/healthcheck-client.key --from-file=/etc/kubernetes/pki/etcd/ca.crt
 
 cat > /tmp/prometheus-additional.yaml <<EOF
@@ -34,3 +35,11 @@ cat > /tmp/prometheus-additional.yaml <<EOF
 EOF
 
 kubectl create secret generic additional-configs --from-file=/tmp/prometheus-additional.yaml -n monitoring
+
+kubectl apply -f rules
+kubectl apply -f node-exporter
+kubectl apply -f kube-state-metrics
+kubectl apply -f alertmanager
+kubectl apply -f grafana
+kubectl apply -f prometheus-service
+# kubectl apply -f ingress
