@@ -4,4 +4,5 @@
 
 ```
 alertmanager/alertmanager-alertmanager.yaml   replicas: 1 (默认是3)
+prometheus-service/prometheus-storageclass.yaml #配置存储
 ```
