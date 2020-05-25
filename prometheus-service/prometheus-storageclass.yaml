@@ -2,7 +2,6 @@ apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
   annotations:
-    k8s.eip.work/storageType: nfs_client_provisioner
     storageclass.kubernetes.io/is-default-class: 'false'
   name: prometheus-data-db
 parameters:
@@ -15,7 +14,6 @@ apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
   annotations:
-    k8s.eip.work/storageType: nfs_client_provisioner
     storageclass.kubernetes.io/is-default-class: 'false'
   name: grafana-data-db
 parameters:
