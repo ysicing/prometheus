@@ -6,10 +6,12 @@ metadata:
   labels:
     k8s-app: etcd
 spec:
+  clusterIP: None
   selector:
     component: etcd
   ports:
-  - name: http-metrics
+  - name: port
     port: 2379
     targetPort: 2379
     protocol: TCP
+  type: ClusterIP    
