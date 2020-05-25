@@ -9,7 +9,7 @@ spec:
   image: ysicing/alertmanager:v0.20.0
   nodeSelector:
     kubernetes.io/os: linux
-  replicas: 1
+  replicas: 3
   securityContext:
     fsGroup: 2000
     runAsNonRoot: true
