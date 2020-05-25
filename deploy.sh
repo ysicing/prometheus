@@ -43,4 +43,5 @@ kubectl apply -f kube-state-metrics
 kubectl apply -f alertmanager
 kubectl apply -f grafana
 kubectl apply -f prometheus-service
+kubectl apply -f setup/prometheus-operator-serviceMonitor.yaml
 # kubectl apply -f ingress
