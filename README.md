@@ -1,8 +1,9 @@
-具体使用参考[prometheus部署](https://ysicing.me/install/prometheus.html)
-
-## 注意
+## 使用
 
 ```
-alertmanager/alertmanager-alertmanager.yaml   replicas: 1 (默认是3)
-prometheus-service/prometheus-storageclass.yaml #配置存储
+git clone https://github.com/ysicing/prometheus.git
+cd prometheus
+# 创建存储sc
+curl https://ysicing.me/hack/k7s/install/nfs/deploy.sh | bash
+./deploy.sh
 ```

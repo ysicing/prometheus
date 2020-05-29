@@ -20,6 +20,7 @@ spec:
           requests:
             storage: 10Gi
   image: ysicing/prometheus:v2.17.2
+  externalUrl: http://prom.k7s.xyz
   nodeSelector:
     kubernetes.io/os: linux
   podMonitorNamespaceSelector: {}

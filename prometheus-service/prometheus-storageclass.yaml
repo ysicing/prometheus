@@ -15,6 +15,18 @@ kind: StorageClass
 metadata:
   annotations:
     storageclass.kubernetes.io/is-default-class: 'false'
+  name: alertmanager-data-db
+parameters:
+  archiveOnDelete: 'false'
+provisioner: nfs-provisioner
+reclaimPolicy: Delete
+volumeBindingMode: Immediate
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  annotations:
+    storageclass.kubernetes.io/is-default-class: 'false'
   name: grafana-data-db
 parameters:
   archiveOnDelete: 'false'

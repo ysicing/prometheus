@@ -7,6 +7,15 @@ metadata:
   namespace: monitoring
 spec:
   image: ysicing/alertmanager:v0.20.0
+  externalUrl: http://alertmanager.k7s.xyz
+  retention: 240h
+  storage:
+    volumeClaimTemplate:
+      spec:
+        storageClassName: alertmanager-data-db
+        resources:
+          requests:
+            storage: 10Gi  
   nodeSelector:
     kubernetes.io/os: linux
   replicas: 3
