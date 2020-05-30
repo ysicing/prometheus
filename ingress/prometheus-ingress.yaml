@@ -35,16 +35,10 @@ apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
   annotations:
-    kubernetes.io/ingress.class: nginx
+    kubernetes.io/ingress.class: ingress-nginx
   name: prom.k7s.xyz
   namespace: monitoring
 spec:
-  # tls:
-  # - hosts:
-  #   - prom.k7s.xyz
-  #   # - grafana.k7s.xyz
-  #   # - alter.k7s.xyz
-  #   secretName: ingress-secret-prom
   rules:
   - host: prom.k7s.xyz
     http:
@@ -52,31 +46,15 @@ spec:
       - backend:
           serviceName: prometheus-k8s
           servicePort: 9090
-  # - host: grafana.k7s.xyz
-  #   http:
-  #     paths:
-  #     - backend:
-  #         serviceName: grafana
-  #         servicePort: 3000
-  # - host: alter.k7s.xyz
-  #   http:
-  #     paths:
-  #     - backend:
-  #         serviceName: alertmanager-main
-  #         servicePort: 9093
 ---
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
   annotations:
-    kubernetes.io/ingress.class: nginx
+    kubernetes.io/ingress.class: ingress-nginx
   name: grafana.k7s.xyz
   namespace: monitoring
 spec:
-  # tls:
-  # - hosts:
-  #   - grafana.k7s.xyz
-  #   secretName: ingress-secret-grafana
   rules:
   - host: grafana.k7s.xyz
     http:
@@ -93,10 +71,6 @@ metadata:
   name: alter.k7s.xyz
   namespace: monitoring
 spec:
-  # tls:
-  # - hosts:
-  #   - alter.k7s.xyz
-  #   secretName: ingress-secret-alter
   rules:
   - host: alter.k7s.xyz
     http:
@@ -104,3 +78,20 @@ spec:
       - backend:
           serviceName: alertmanager-main
           servicePort: 9093
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: ingress-nginx
+  name: prometheus-alert-center
+  namespace: monitoring
+spec:
+  rules:
+    - host: alert-center.k7s.xyz
+      http:
+        paths:
+          - backend:
+              serviceName: prometheus-alert-center
+              servicePort: 8080
+            path: /              

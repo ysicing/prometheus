@@ -195,20 +195,3 @@ spec:
     targetPort: http
   selector:
     app: prometheus-alert-center
----
-apiVersion: networking.k8s.io/v1beta1
-kind: Ingress
-metadata:
-  # annotations:
-  #   kubernetes.io/ingress.class: nginx
-  name: prometheus-alert-center
-  namespace: monitoring
-spec:
-  rules:
-    - host: alert-center.k7s.xyz
-      http:
-        paths:
-          - backend:
-              serviceName: prometheus-alert-center
-              servicePort: 8080
-            path: /    
