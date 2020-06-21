@@ -151,7 +151,7 @@ spec:
         alertname: prometheus-alert-center
     spec:
       containers:
-      - image: feiyu563/prometheus-alert
+      - image: registry.cn-beijing.aliyuncs.com/k7scn/prometheus-alert
         name: prometheus-alert-center
         env:
         - name: TZ

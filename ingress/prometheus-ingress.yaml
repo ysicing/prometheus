@@ -36,11 +36,11 @@ kind: Ingress
 metadata:
   annotations:
     kubernetes.io/ingress.class: ingress-nginx
-  name: prom.k7s.xyz
+  name: prom.k7s.local
   namespace: monitoring
 spec:
   rules:
-  - host: prom.k7s.xyz
+  - host: prom.k7s.local
     http:
       paths:
       - backend:
@@ -53,11 +53,11 @@ kind: Ingress
 metadata:
   annotations:
     kubernetes.io/ingress.class: ingress-nginx
-  name: grafana.k7s.xyz
+  name: grafana.k7s.local
   namespace: monitoring
 spec:
   rules:
-  - host: grafana.k7s.xyz
+  - host: grafana.k7s.local
     http:
       paths:
       - backend:
@@ -70,11 +70,11 @@ kind: Ingress
 metadata:
   annotations:
     kubernetes.io/ingress.class: ingress-nginx
-  name: alter.k7s.xyz
+  name: alter.k7s.local
   namespace: monitoring
 spec:
   rules:
-  - host: alter.k7s.xyz
+  - host: alter.k7s.local
     http:
       paths:
       - backend:
@@ -87,11 +87,11 @@ kind: Ingress
 metadata:
   annotations:
     kubernetes.io/ingress.class: ingress-nginx
-  name: alert-center.k7s.xyz
+  name: alert-center.k7s.local
   namespace: monitoring
 spec:
   rules:
-    - host: alert-center.k7s.xyz
+    - host: alert-center.k7s.local
       http:
         paths:
           - backend:

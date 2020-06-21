@@ -7,3 +7,7 @@ cd prometheus
 curl https://ysicing.me/hack/k7s/install/nfs/deploy.sh | bash
 ./deploy.sh
 ```
+
+## 说明
+
+> 默认禁用了存储

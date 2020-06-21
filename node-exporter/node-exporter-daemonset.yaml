@@ -25,7 +25,7 @@ spec:
         - --no-collector.wifi
         - --no-collector.hwmon
         - --collector.filesystem.ignored-mount-points=^/(dev|proc|sys|var/lib/docker/.+|var/lib/kubelet/pods/.+)($|/)
-        image: ysicing/node-exporter:v0.18.1
+        image: registry.cn-beijing.aliyuncs.com/k7scn/node-exporter:v0.18.1
         name: node-exporter
         resources:
           limits:
@@ -55,7 +55,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: status.podIP
-        image: ysicing/kube-rbac-proxy:v0.4.1
+        image: registry.cn-beijing.aliyuncs.com/k7scn/kube-rbac-proxy:v0.4.1
         name: kube-rbac-proxy
         ports:
         - containerPort: 9100

@@ -8,3 +8,4 @@ kubectl delete -f alertmanager
 kubectl delete -f grafana
 kubectl delete -f prometheus-service
 kubectl delete -f setup
+kubectl delete -f ingress
