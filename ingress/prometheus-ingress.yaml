@@ -36,6 +36,7 @@ kind: Ingress
 metadata:
   annotations:
     kubernetes.io/ingress.class: ingress-nginx
+    prometheus.io/scrape: 'true'
   name: prom.k7s.local
   namespace: monitoring
 spec:
@@ -53,6 +54,7 @@ kind: Ingress
 metadata:
   annotations:
     kubernetes.io/ingress.class: ingress-nginx
+    prometheus.io/scrape: 'true'    
   name: grafana.k7s.local
   namespace: monitoring
 spec:
@@ -70,6 +72,7 @@ kind: Ingress
 metadata:
   annotations:
     kubernetes.io/ingress.class: ingress-nginx
+    prometheus.io/scrape: 'true'    
   name: alter.k7s.local
   namespace: monitoring
 spec:
@@ -87,6 +90,7 @@ kind: Ingress
 metadata:
   annotations:
     kubernetes.io/ingress.class: ingress-nginx
+    prometheus.io/scrape: 'true'    
   name: alert-center.k7s.local
   namespace: monitoring
 spec:
@@ -97,4 +101,22 @@ spec:
           - backend:
               serviceName: prometheus-alert-center
               servicePort: 8080
-            path: /            
+            path: /          
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: ingress-nginx
+    prometheus.io/scrape: 'true'
+  name: blackbox-exporter.k7s.local
+  namespace: monitoring
+spec:
+  rules:
+    - host: blackbox-exporter.k7s.local
+      http:
+        paths:
+          - backend:
+              serviceName: blackbox-exporter
+              servicePort: 9115
+            path: /                

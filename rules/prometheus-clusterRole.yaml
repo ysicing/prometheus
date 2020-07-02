@@ -26,3 +26,12 @@ rules:
   - /metrics
   verbs:
   - get
+- apiGroups:
+  - extensions
+  - networking.k8s.io
+  resources:
+  - ingresses
+  verbs:
+  - get
+  - list
+  - watch  

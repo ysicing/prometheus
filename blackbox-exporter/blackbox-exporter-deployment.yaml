@@ -1,0 +1,74 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.kubernetes.io/instance: blackbox-exporter
+    app.kubernetes.io/name: blackbox-exporter
+  name: blackbox-exporter
+  namespace: monitoring
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: blackbox-exporter
+      app.kubernetes.io/name: blackbox-exporter
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/instance: blackbox-exporter
+        app.kubernetes.io/name: blackbox-exporter
+    spec:
+      containers:
+      - args:
+        - --config.file=/config/blackbox.yaml
+        image: registry.cn-beijing.aliyuncs.com/k7scn/blackbox-exporter:master
+        imagePullPolicy: IfNotPresent
+        livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /health
+            port: http
+            scheme: HTTP
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+        name: blackbox-exporter
+        ports:
+        - containerPort: 9115
+          name: http
+          protocol: TCP
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /health
+            port: http
+            scheme: HTTP
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+        resources: 
+          limits:
+            cpu: 500m
+            memory: 512Mi
+          requests:
+            cpu: 100m
+            memory: 100Mi
+        securityContext:
+          capabilities:
+            add:
+            - NET_RAW
+          readOnlyRootFilesystem: true
+        volumeMounts:
+        - mountPath: /config
+          name: config
+      restartPolicy: Always
+      volumes:
+      - configMap:
+          defaultMode: 420
+          name: blackbox-exporter-config
+        name: config
