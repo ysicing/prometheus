@@ -1,0 +1,11 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  # annotations:
+  #   storageclass.kubernetes.io/is-default-class: 'true'
+  name: k8s-prod-monitor
+parameters:
+  archiveOnDelete: 'false'
+provisioner: nfs-provisioner
+reclaimPolicy: Delete
+volumeBindingMode: Immediate

@@ -2,8 +2,10 @@ apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   labels:
+    app.kubernetes.io/component: exporter
     app.kubernetes.io/name: node-exporter
-    app.kubernetes.io/version: v0.18.1
+    app.kubernetes.io/part-of: kube-prometheus
+    app.kubernetes.io/version: 1.1.0
   name: node-exporter
   namespace: monitoring
 spec:
@@ -18,16 +20,12 @@ spec:
       sourceLabels:
       - __meta_kubernetes_pod_node_name
       targetLabel: instance
-    - action: replace
-      regex: (.*)
-      replacement: $1
-      sourceLabels:
-      - __meta_kubernetes_pod_node_name
-      targetLabel: kubernetes_node      
     scheme: https
     tlsConfig:
       insecureSkipVerify: true
   jobLabel: app.kubernetes.io/name
   selector:
     matchLabels:
+      app.kubernetes.io/component: exporter
       app.kubernetes.io/name: node-exporter
+      app.kubernetes.io/part-of: kube-prometheus
