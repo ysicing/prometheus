@@ -35,7 +35,7 @@ spec:
         - --metrics-relist-interval=1m
         - --prometheus-url=http://prometheus-k8s.monitoring.svc.cluster.local:9090/
         - --secure-port=6443
-        image: registry.cn-beijing.aliyuncs.com/k7scn/k8s-prometheus-adapter:v0.8.3
+        image: registry-vpc.cn-beijing.aliyuncs.com/k0s/k8s-prometheus-adapter:v0.8.3
         name: prometheus-adapter
         ports:
         - containerPort: 6443

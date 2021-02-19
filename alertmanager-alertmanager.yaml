@@ -10,7 +10,16 @@ metadata:
   name: main
   namespace: monitoring
 spec:
-  image: registry.cn-beijing.aliyuncs.com/k7scn/alertmanager:v0.21.0
+  image: registry-vpc.cn-beijing.aliyuncs.com/k0s/alertmanager:v0.21.0
+  externalUrl: http://alertmanager.k7s.local
+  storage:
+    volumeClaimTemplate:
+      spec:
+        storageClassName: devk8s-bj
+        resources:
+          requests:
+            storage: 10Gi
+  retention: 24h
   nodeSelector:
     kubernetes.io/os: linux
   podMetadata:
@@ -19,7 +28,7 @@ spec:
       app.kubernetes.io/name: alertmanager
       app.kubernetes.io/part-of: kube-prometheus
       app.kubernetes.io/version: 0.21.0
-  replicas: 3
+  replicas: 1
   resources: {}
   securityContext:
     fsGroup: 2000

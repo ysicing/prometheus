@@ -10,13 +10,23 @@ metadata:
   name: k8s
   namespace: monitoring
 spec:
+  storage:
+    volumeClaimTemplate:
+      spec:
+        storageClassName: devk8s-bj
+        resources:
+          requests:
+            storage: 100Gi
   alerting:
     alertmanagers:
     - apiVersion: v2
       name: alertmanager-main
       namespace: monitoring
       port: web
-  image: registry.cn-beijing.aliyuncs.com/k7scn/prometheus:v2.24.0
+  additionalScrapeConfigs:
+    name: additional-scrape-configs
+    key: prometheus-additional.yaml
+  image: registry-vpc.cn-beijing.aliyuncs.com/k0s/prometheus:v2.24.0
   nodeSelector:
     kubernetes.io/os: linux
   podMetadata:
@@ -29,12 +39,8 @@ spec:
   podMonitorSelector: {}
   probeNamespaceSelector: {}
   probeSelector: {}
-  replicas: 2
-  secrets:
-  - etcd-certs
-  additionalScrapeConfigs:
-    name: additional-scrape-configs
-    key: prometheus-additional.yaml
+  retention: 7d
+  replicas: 1
   resources:
     requests:
       memory: 400Mi
@@ -49,5 +55,4 @@ spec:
   serviceAccountName: prometheus-k8s
   serviceMonitorNamespaceSelector: {}
   serviceMonitorSelector: {}
-  thanos: {}
   version: 2.24.0
