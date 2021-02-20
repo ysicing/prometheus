@@ -11,7 +11,7 @@ metadata:
   namespace: monitoring
 spec:
   image: registry-vpc.cn-beijing.aliyuncs.com/k0s/alertmanager:v0.21.0
-  externalUrl: http://alertmanager.k7s.local
+  # externalUrl: http://alertmanager.local
   storage:
     volumeClaimTemplate:
       spec:
