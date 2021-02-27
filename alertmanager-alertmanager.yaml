@@ -10,15 +10,15 @@ metadata:
   name: main
   namespace: monitoring
 spec:
-  image: registry-vpc.cn-beijing.aliyuncs.com/k0s/alertmanager:v0.21.0
-  # externalUrl: http://alertmanager.local
+  image: registry.cn-beijing.aliyuncs.com/k0s/alertmanager:v0.21.0
+  externalUrl: http://alertmanager.local
   storage:
     volumeClaimTemplate:
       spec:
-        storageClassName: devk8s-bj
+        storageClassName: longhorn
         resources:
           requests:
-            storage: 10Gi
+            storage: 1Gi
   retention: 24h
   nodeSelector:
     kubernetes.io/os: linux

@@ -13,10 +13,10 @@ spec:
   storage:
     volumeClaimTemplate:
       spec:
-        storageClassName: devk8s-bj
+        storageClassName: longhorn
         resources:
           requests:
-            storage: 100Gi
+            storage: 1Gi
   alerting:
     alertmanagers:
     - apiVersion: v2
@@ -26,8 +26,8 @@ spec:
   additionalScrapeConfigs:
     name: additional-scrape-configs
     key: prometheus-additional.yaml
-  image: registry-vpc.cn-beijing.aliyuncs.com/k0s/prometheus:v2.24.0
-  # externalUrl: http://prometheus.local
+  image: registry.cn-beijing.aliyuncs.com/k0s/prometheus:v2.24.0
+  externalUrl: http://prometheus.local
   nodeSelector:
     kubernetes.io/os: linux
   podMetadata:
@@ -42,6 +42,8 @@ spec:
   probeSelector: {}
   retention: 7d
   replicas: 1
+  secrets:
+  - etcd-certs
   resources:
     requests:
       memory: 400Mi

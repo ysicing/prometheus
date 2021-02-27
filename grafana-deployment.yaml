@@ -27,7 +27,7 @@ spec:
     spec:
       containers:
       - env: []
-        image: registry-vpc.cn-beijing.aliyuncs.com/k0s/grafana:7.3.7
+        image: registry.cn-beijing.aliyuncs.com/k0s/grafana:7.3.7
         name: grafana
         ports:
         - containerPort: 3000
@@ -130,8 +130,10 @@ spec:
         runAsUser: 65534
       serviceAccountName: grafana
       volumes:
-      - emptyDir: {}
-        name: grafana-storage
+      - name: grafana-storage
+        # emptyDir: {}
+        persistentVolumeClaim:
+          claimName: grafana-storage
       - name: grafana-datasources
         secret:
           secretName: grafana-datasources
