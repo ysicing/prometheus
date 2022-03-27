@@ -3,10 +3,10 @@ kind: Prometheus
 metadata:
   labels:
     app.kubernetes.io/component: prometheus
+    app.kubernetes.io/instance: k8s
     app.kubernetes.io/name: prometheus
     app.kubernetes.io/part-of: kube-prometheus
-    app.kubernetes.io/version: 2.24.0
-    prometheus: k8s
+    app.kubernetes.io/version: 2.34.0
   name: k8s
   namespace: monitoring
 spec:
@@ -16,32 +16,28 @@ spec:
       name: alertmanager-main
       namespace: monitoring
       port: web
-  image: registry.cn-beijing.aliyuncs.com/k7scn/prometheus:v2.24.0
+  enableFeatures: []
+  externalLabels: {}
+  image: quay.io/prometheus/prometheus:v2.34.0
   nodeSelector:
     kubernetes.io/os: linux
   podMetadata:
     labels:
       app.kubernetes.io/component: prometheus
+      app.kubernetes.io/instance: k8s
       app.kubernetes.io/name: prometheus
       app.kubernetes.io/part-of: kube-prometheus
-      app.kubernetes.io/version: 2.24.0
+      app.kubernetes.io/version: 2.34.0
   podMonitorNamespaceSelector: {}
   podMonitorSelector: {}
   probeNamespaceSelector: {}
   probeSelector: {}
   replicas: 2
-  secrets:
-  - etcd-certs
-  additionalScrapeConfigs:
-    name: additional-scrape-configs
-    key: prometheus-additional.yaml
   resources:
     requests:
       memory: 400Mi
-  ruleSelector:
-    matchLabels:
-      prometheus: k8s
-      role: alert-rules
+  ruleNamespaceSelector: {}
+  ruleSelector: {}
   securityContext:
     fsGroup: 2000
     runAsNonRoot: true
@@ -49,5 +45,4 @@ spec:
   serviceAccountName: prometheus-k8s
   serviceMonitorNamespaceSelector: {}
   serviceMonitorSelector: {}
-  thanos: {}
-  version: 2.24.0
+  version: 2.34.0
