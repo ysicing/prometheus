@@ -30,7 +30,7 @@ spec:
       automountServiceAccountToken: false
       containers:
       - env: []
-        image: grafana/grafana:8.4.4
+        image: ccr.ccs.tencentyun.com/k7scn/grafana:8.4.4
         name: grafana
         ports:
         - containerPort: 3000
